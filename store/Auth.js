@@ -21,6 +21,14 @@ export const actions = {
       .catch((err) => {
         return console.log(err)
       })
+  },
+
+  sync (store) {
+    const user = window.localStorage.getItem('user')
+    if (user) {
+      store.commit('SET_USER', JSON.parse(user))
+      return store.state.user
+    }
   }
 }
 

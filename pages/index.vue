@@ -90,6 +90,9 @@ export default {
       whoami: null
     }
   },
+  created () {
+    this.sync()
+  },
   methods: {
     async login () {
       const params = {
@@ -106,6 +109,14 @@ export default {
       } else {
         this.alertLogin = true
       }
+    },
+    sync () {
+      this.$store.dispatch('Auth/sync')
+        .then((user) => {
+          if (user) {
+            this.$router.push('/home')
+          }
+        })
     }
   }
 }
