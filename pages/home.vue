@@ -30,7 +30,7 @@ export default {
     return {
       items: [
         { name: 'GET LIST', color: 'green', to: '/getList' },
-        { name: 'GET SHOW ID', color: 'blue' },
+        { name: 'GET SHOW ID', color: 'blue', to: `get/${1}` },
         { name: 'POST', color: 'grey' },
         { name: 'PUT', color: 'yellow' },
         { name: 'DELETE', color: 'red' }
