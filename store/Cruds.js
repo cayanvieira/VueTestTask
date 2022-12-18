@@ -17,6 +17,19 @@ export const actions = {
       .get(`https://sys-dev.searchandstay.com/api/admin/calendar_patterns/${id}`)
       .then(response => response.data)
       .catch(err => console.log(err))
+  },
+
+  postCreate (_, { calendarPatterns }) {
+    console.log(calendarPatterns)
+    return this.$axios
+      .post('https://sys-dev.searchandstay.com/api/admin/calendar_patterns', { calendar_patterns: calendarPatterns })
+      .catch(err => console.log(err))
+  },
+
+  putUpdate (_, { id, calendarPatterns }) {
+    return this.$axios
+      .put(`https://sys-dev.searchandstay.com/api/admin/calendar_patterns/${id}`, { calendar_patterns: calendarPatterns })
+      .catch(err => console.log(err))
   }
 }
 

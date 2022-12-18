@@ -3,8 +3,17 @@
     <v-app-bar
       app
       color="#7fdae0"
-      class="d-flex justify-end"
     >
+      <v-btn
+        color="white"
+        to="/home"
+      >
+        home
+        <v-icon>
+          mdi-home
+        </v-icon>
+      </v-btn>
+      <v-spacer />
       <v-btn
         color="white"
         @click="logout()"
