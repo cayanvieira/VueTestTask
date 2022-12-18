@@ -1,11 +1,27 @@
 <template>
   <div class="ma-5 d-flex justify-center">
-    <v-card v-if="dataList">
+    <v-card
+      v-if="dataList"
+      class="rounded-xl"
+    >
       <v-data-table
         :headers="headers"
         :items="dataList"
         item-key="id"
-      />
+      >
+        <template #[`item.id`]="{item}">
+          <v-btn
+            fab
+            small
+            color="#7fdae0"
+            :to="`get/${item.id}`"
+          >
+            <v-icon color="white">
+              mdi-link
+            </v-icon>
+          </v-btn>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
