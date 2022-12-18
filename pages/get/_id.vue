@@ -7,7 +7,19 @@
       class="rounded-xl"
     >
       <v-card-title class="justify-center">
+        <v-spacer class="mx-5" />
         Calendar
+        <v-spacer />
+        <v-btn
+          color="red"
+          fab
+          small
+          @click="deleteCalendar()"
+        >
+          <v-icon color="white">
+            mdi-delete
+          </v-icon>
+        </v-btn>
       </v-card-title>
       <v-divider />
       <v-row>
@@ -136,6 +148,10 @@ export default {
             this.$router.push('/')
           }
         })
+    },
+    deleteCalendar () {
+      this.$store.dispatch('Cruds/deleteCalendar', this.$route.params.id)
+        .then(() => this.$router.push('/getList'))
     }
   }
 }
