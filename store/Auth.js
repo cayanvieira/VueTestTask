@@ -38,6 +38,13 @@ export const actions = {
       store.commit('SET_WHOAMI', JSON.parse(whoami))
       return store.state.token
     }
+  },
+
+  logout (store) {
+    console.log('poi')
+    store.commit('SET_TOKEN', null)
+    store.commit('SET_WHOAMI', null)
+    this.$router.go('/')
   }
 }
 
