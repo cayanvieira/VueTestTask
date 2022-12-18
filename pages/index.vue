@@ -102,7 +102,7 @@ export default {
 
       await this.$store.dispatch('Auth/login', params)
 
-      this.whoami = this.$store.state.Auth.user
+      this.whoami = this.$store.state.Auth.whoami
 
       if (this.whoami) {
         return this.$router.push('/home')
@@ -112,8 +112,8 @@ export default {
     },
     sync () {
       this.$store.dispatch('Auth/sync')
-        .then((user) => {
-          if (user) {
+        .then((whoami) => {
+          if (whoami) {
             this.$router.push('/home')
           }
         })

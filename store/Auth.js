@@ -1,5 +1,7 @@
+const Cookie = require('js-cookie')
 export const state = () => ({
-  user: null
+  whoami: null,
+  token: null
 })
 
 export const getters = {}
@@ -14,9 +16,14 @@ export const actions = {
           password: params.password
         }
       })
-      .then((response) => {
-        store.commit('SET_USER', response.data.data.result)
-        return store.state.user
+      .then(({ data }) => {
+        store.commit('SET_WHOAMI', {
+          name: data.data.result.name,
+          id: data.data.result.id
+        }
+        )
+        store.commit('SET_TOKEN', data.data.result.access_token)
+        return store.state.whoami
       })
       .catch((err) => {
         return console.log(err)
@@ -24,17 +31,29 @@ export const actions = {
   },
 
   sync (store) {
-    const user = window.localStorage.getItem('user')
-    if (user) {
-      store.commit('SET_USER', JSON.parse(user))
-      return store.state.user
+    const token = Cookie.get('token')
+    const whoami = Cookie.get('whoami')
+    if (token && whoami) {
+      store.commit('SET_TOKEN', JSON.parse(token))
+      store.commit('SET_WHOAMI', JSON.parse(whoami))
+      return store.state.token
     }
   }
 }
 
 export const mutations = {
-  SET_USER (state, user) {
-    state.user = user
-    window.localStorage.setItem('user', JSON.stringify(user))
+  SET_WHOAMI (state, whoami) {
+    state.whoami = whoami
+    Cookie.set('whoami', JSON.stringify(whoami))
+  },
+  SET_TOKEN (state, token) {
+    state.token = token
+    Cookie.set('token', JSON.stringify(token))
+    this.$axios.setToken(token, 'Bearer')
+  },
+  REMOVE_TOKEN (state) {
+    state.token = null
+
+    this.$axios.setToken(false)
   }
 }
