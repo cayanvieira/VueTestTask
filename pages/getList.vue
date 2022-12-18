@@ -40,7 +40,7 @@ export default {
       this.$store.dispatch('Auth/sync')
         .then((token) => {
           if (token) {
-            this.$router.push('/list')
+            this.$router.push('/getList')
           } else {
             this.$router.push('/')
           }
