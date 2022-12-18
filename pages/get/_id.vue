@@ -1,59 +1,61 @@
 <template>
   <div class="ma-5 d-flex justify-center">
-    <v-card
-      v-if="item"
-      min-width="400px"
-      elevation="10"
-      class="rounded-xl"
-    >
-      <v-card-title class="justify-center">
-        <v-spacer class="mx-5" />
-        Calendar
-        <v-spacer />
-        <v-btn
-          color="red"
-          fab
-          small
-          @click="deleteCalendar()"
-        >
-          <v-icon color="white">
-            mdi-delete
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-divider />
-      <v-row>
-        <v-col class="ml-5">
-          <v-card-title>Id</v-card-title>
-          <v-card-subtitle>{{ item.id }}</v-card-subtitle>
-          <v-card-title>Bg-color</v-card-title>
-          <v-card-subtitle>{{ item.bg_color }}</v-card-subtitle>
-          <v-card-title>Text-color</v-card-title>
-          <v-card-subtitle>{{ item.text_color }}</v-card-subtitle>
-        </v-col>
-        <v-divider
-          vertical
-          class="my-3"
-        />
-        <v-col class="ml-5">
-          <v-card-title>Active</v-card-title>
-          <v-card-subtitle>{{ item.active }}</v-card-subtitle>
-          <v-card-title>Order</v-card-title>
-          <v-card-subtitle>{{ item.order }}</v-card-subtitle>
-        </v-col>
-      </v-row>
-      <v-divider />
-      <v-card-actions class="d-flex justify-center ma-3">
-        <v-btn
-          min-width="100px"
-          class="white--text"
-          color="#7fdae0"
-          @click="updateModel = !updateModel"
-        >
-          Update
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+    <v-col class="d-flex justify-center">
+      <v-card
+        v-if=" item"
+        elevation="10"
+        class="rounded-xl"
+        width="400px"
+      >
+        <v-card-title class="justify-center">
+          <v-spacer class="mx-5" />
+          Calendar
+          <v-spacer />
+          <v-btn
+            color="red"
+            fab
+            small
+            @click="deleteCalendar()"
+          >
+            <v-icon color="white">
+              mdi-delete
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-divider />
+        <v-row>
+          <v-col class="ml-5">
+            <v-card-title>Id</v-card-title>
+            <v-card-subtitle>{{ item.id }}</v-card-subtitle>
+            <v-card-title>Bg-color</v-card-title>
+            <v-card-subtitle>{{ item.bg_color }}</v-card-subtitle>
+            <v-card-title>Text-color</v-card-title>
+            <v-card-subtitle>{{ item.text_color }}</v-card-subtitle>
+          </v-col>
+          <v-divider
+            vertical
+            class="my-3"
+          />
+          <v-col class="ml-5">
+            <v-card-title>Active</v-card-title>
+            <v-card-subtitle>{{ item.active }}</v-card-subtitle>
+            <v-card-title>Order</v-card-title>
+            <v-card-subtitle>{{ item.order }}</v-card-subtitle>
+          </v-col>
+        </v-row>
+        <v-divider />
+        <v-card-actions class="d-flex justify-center ma-3">
+          <v-btn
+            min-width="100px"
+            class="white--text"
+            color="#7fdae0"
+            @click="updateModel = !updateModel"
+          >
+            Update
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
     <v-dialog
       v-model="updateModel"
       class="d-flex justify-center round"
@@ -138,6 +140,7 @@ export default {
       const id = this.$route.params.id
       const calendarPatterns = this.calendar
       this.$store.dispatch('Cruds/putUpdate', { id, calendarPatterns })
+        .then(() => this.$router.go(`get/${this.$route.params.id}`))
     },
     sync () {
       this.$store.dispatch('Auth/sync')
@@ -151,7 +154,7 @@ export default {
     },
     deleteCalendar () {
       this.$store.dispatch('Cruds/deleteCalendar', this.$route.params.id)
-        .then(() => this.$router.push('/getList'))
+        .then(() => this.$router.push('/home'))
     }
   }
 }

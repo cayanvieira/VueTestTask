@@ -23,6 +23,7 @@ export const actions = {
     console.log(calendarPatterns)
     return this.$axios
       .post('https://sys-dev.searchandstay.com/api/admin/calendar_patterns', { calendar_patterns: calendarPatterns })
+      .then(response => response.data)
       .catch(err => console.log(err))
   },
 

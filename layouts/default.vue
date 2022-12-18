@@ -5,7 +5,7 @@
       app
       color="#7fdae0"
     >
-      <div class="d-flex justify-center ma-3 white--text font-italic text-decoration-underline">
+      <div v-if="whoami" class="d-flex justify-center ma-3 white--text font-italic text-decoration-underline">
         {{ whoami.toUpperCase() }}
       </div>
       <v-list>
@@ -20,7 +20,19 @@
             >
               mdi-home
             </v-icon>
-            Página Inicial
+            HomePage
+          </v-list-item>
+          <v-list-item
+            class=" color white--text"
+            to="/post"
+          >
+            <v-icon
+              class="mr-2"
+              color="white"
+            >
+              mdi-pencil
+            </v-icon>
+            Create
           </v-list-item>
           <v-list-item
             class=" color white--text"
@@ -68,7 +80,7 @@ export default {
   },
   computed: {
     whoami () {
-      return this.$store.state.Auth.whoami.name
+      return this.$store.state.Auth?.whoami?.name
     }
   },
   methods: {

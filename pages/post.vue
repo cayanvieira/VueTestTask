@@ -35,6 +35,33 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <v-dialog
+      v-model="alertRegister"
+      class="d-flex align-center"
+      width="600px"
+      height="300px"
+    >
+      <v-card
+        width="600px"
+        height="100px"
+        class="d-flex justify-center"
+      >
+        <v-card-title>
+          fields are mandatory
+        </v-card-title>
+        <div class="d-flex align-center">
+          <v-btn
+            class="white--text rounded-xl"
+            color="#7fdae0"
+            @click="alertRegister = false"
+          >
+            <v-icon>
+              mdi-close
+            </v-icon>
+          </v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -47,7 +74,8 @@ export default {
         text_color: null,
         active: 1
       },
-      activeSelect: ['1', '0']
+      activeSelect: ['1', '0'],
+      alertRegister: false
     }
   },
   created () {
@@ -56,6 +84,13 @@ export default {
   methods: {
     create () {
       this.$store.dispatch('Cruds/postCreate', { calendarPatterns: this.calendar })
+        .then((data) => {
+          if (data?.success === true) {
+            this.$router.push('/home')
+          } else {
+            this.alertRegister = true
+          }
+        })
     },
     sync () {
       this.$store.dispatch('Auth/sync')
