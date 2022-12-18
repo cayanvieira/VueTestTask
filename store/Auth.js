@@ -41,10 +41,9 @@ export const actions = {
   },
 
   logout (store) {
-    console.log('poi')
     store.commit('SET_TOKEN', null)
     store.commit('SET_WHOAMI', null)
-    this.$router.go('/')
+    this.$router.push('/')
   }
 }
 
