@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex align-center justify-center ma-5">
-    <v-card>
+    <v-card elevation="10">
       <v-card-title class="d-flex justify-center">
-        Crud's
+        Crud
       </v-card-title>
       <v-divider />
       <v-row class="mt-5">
@@ -29,9 +29,8 @@ export default {
   data () {
     return {
       items: [
-        { name: 'GET LIST', color: 'green', to: '/getList' },
-        { name: 'POST', color: 'grey' },
-        { name: 'PUT', color: 'yellow' },
+        { name: 'GET/PUT', color: 'green', to: '/getList' },
+        { name: 'POST', color: 'blue', to: '/post' },
         { name: 'DELETE', color: 'red' }
       ]
     }
