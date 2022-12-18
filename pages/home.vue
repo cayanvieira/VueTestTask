@@ -30,8 +30,9 @@ export default {
   data () {
     return {
       items: [
-        { name: 'GET', color: 'green', to: '/list' },
-        { name: 'POST', color: 'blue' },
+        { name: 'GET LIST', color: 'green', to: '/list' },
+        { name: 'GET SHOW ID', color: 'blue' },
+        { name: 'POST', color: 'grey' },
         { name: 'PUT', color: 'yellow' },
         { name: 'DELETE', color: 'red' }
       ]
