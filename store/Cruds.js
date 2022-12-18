@@ -30,7 +30,14 @@ export const actions = {
     return this.$axios
       .put(`https://sys-dev.searchandstay.com/api/admin/calendar_patterns/${id}`, { calendar_patterns: calendarPatterns })
       .catch(err => console.log(err))
+  },
+
+  async deleteCalendar (_, id) {
+    return await this.$axios
+      .delete(`https://sys-dev.searchandstay.com/api/admin/calendar_patterns/${id}`)
+      .catch(err => console.log(err))
   }
+
 }
 
 export const mutations = {
