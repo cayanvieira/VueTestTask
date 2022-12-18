@@ -26,11 +26,10 @@
 <script>
 export default {
   name: 'HomePage',
-  title () { return 'oioi' },
   data () {
     return {
       items: [
-        { name: 'GET LIST', color: 'green', to: '/list' },
+        { name: 'GET LIST', color: 'green', to: '/getList' },
         { name: 'GET SHOW ID', color: 'blue' },
         { name: 'POST', color: 'grey' },
         { name: 'PUT', color: 'yellow' },
