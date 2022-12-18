@@ -1,5 +1,5 @@
 <template>
-  <div class="totalScreen d-flex justify-center align-center">
+  <div class="totalScreen d-flex justify-center align-center pa-5">
     <v-card
       elevation="10"
       class="d-flex justify-center align-center rounded-xl "
@@ -81,6 +81,7 @@
 <script>
 export default {
   name: 'IndexPage',
+  layout: 'login',
 
   data () {
     return {
