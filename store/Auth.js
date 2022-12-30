@@ -8,8 +8,8 @@ export const getters = {}
 
 export const actions = {
 
-  async login (store, params) {
-    await this.$axios
+  login (store, params) {
+    return this.$axios
       .post('https://sys-dev.searchandstay.com/api/admin/login_json', {
         login: {
           email: params.email,
